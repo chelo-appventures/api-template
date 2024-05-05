@@ -1,0 +1,6 @@
+{
+  "uri": "mongodb://localhost:27017",
+  "database": "GENAPI-Test",
+  "migrationsDir": "src/migrations",
+  "migrationsCollection": "ccc_migrations_changelog"
+}
