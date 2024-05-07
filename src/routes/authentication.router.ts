@@ -8,7 +8,6 @@ authenticationRouter.post("/login", async (req: Request, res: Response) => {
   const { username, password } = req.body;
   try {
     const user = await collections.ccc_users.findOne({ username, password });
-    console.log(user);
     if (!user) {
       return res.status(401).json({
         username,
@@ -26,4 +25,30 @@ authenticationRouter.post("/login", async (req: Request, res: Response) => {
   }
 });
 
+authenticationRouter.post("/register", async (req: Request, res: Response) => {
+  try {
+    if (req.body.length === 0) {
+      return res.json({ error: "No payload provided" });
+    }
+
+    const { username, password } = req.body;
+    const data = await collections.ccc_users.insertOne({
+      username,
+      password,
+      rol: "Operator",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+
+    return res.json({
+      status: "success",
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: "failure",
+      error,
+    });
+  }
+});
 export default authenticationRouter;

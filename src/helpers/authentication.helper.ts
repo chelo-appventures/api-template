@@ -12,7 +12,7 @@ export function verifyToken(req: Request, res: Response, next: NextFunction) {
   if (!bearerHeader)
     return res.status(401).json({ error: "No authorization header" });
   const bearerToken = bearerHeader.split(" ")[1];
-  if (bearerToken === process.env.SOLARISBEARER) {
+  if (bearerToken === process.env.MAGICBEARER) {
     return next();
   }
   try {

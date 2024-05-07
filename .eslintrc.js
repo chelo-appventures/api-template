@@ -12,6 +12,6 @@ module.exports = {
   },
   plugins: ["@typescript-eslint"],
   rules: {
-    "no-unused-variable": [true, { "ignore-pattern": "^_" }],
+    "no-unused-variable": 0,
   },
 };

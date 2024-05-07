@@ -7,12 +7,22 @@ restfulRouter.use(express.json());
 
 restfulRouter.get("/:entity", async (req: Request, res: Response) => {
   const entity = req.params.entity;
-  console.log({ entity });
   try {
     const data = await collections[entity]?.find({}).toArray();
     res.status(200).json({ data });
   } catch (error) {
     res.status(500).json({ error: { message: `${entity} listing error` } });
+  }
+});
+
+restfulRouter.get("/:entity/search", async (req: Request, res: Response) => {
+  const entity = req.params.entity;
+  const query = req.query;
+  try {
+    const data = await collections[entity]?.find(query).toArray();
+    res.status(200).json({ data });
+  } catch (error) {
+    res.status(500).json({ error: { message: `${entity} error` } });
   }
 });
 
