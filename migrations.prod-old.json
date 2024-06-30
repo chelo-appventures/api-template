@@ -1,0 +1,7 @@
+{
+
+  "uri": "mongodb+srv://devrg:rgmongotest@rg-zero.ooaz5du.mongodb.net/?appName=rg-zero"
+  "database": "rg-zero",
+  "migrationsDir": "src/migrations",
+  "migrationsCollection": "ccc_migrations_changelog"
+}
