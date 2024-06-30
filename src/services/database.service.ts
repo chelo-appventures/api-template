@@ -15,7 +15,7 @@ export const connectToDatabase = async () => {
     },
   });
   await client.connect();
-  const db: Mongodb.Db = client.db("admin");
+  const db: Mongodb.Db = client.db(DB_NAME);
 
   collections = DB_COLLECTIONS.reduce((_colls, collName: string) => {
     collections[collName] = db.collection(collName);
