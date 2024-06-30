@@ -9,7 +9,7 @@ export class seed_users1714840962665 implements MigrationInterface {
       await session.withTransaction(async () => {
         await db.collection("ccc_users").insertOne({
           username: "admin",
-          password: "MD5('1234')",
+          password: "1234",
           role: "GOD",
         });
       });
