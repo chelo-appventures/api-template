@@ -7,9 +7,15 @@ const DB_COLLECTIONS: string[] = process.env.DB_COLLECTIONS?.split(",") || [];
 console.log(DB_CONN_STRING);
 export let collections: Record<string, Mongodb.Collection> = {};
 export const connectToDatabase = async () => {
-  const client: Mongodb.MongoClient = new Mongodb.MongoClient(DB_CONN_STRING);
+  const client: Mongodb.MongoClient = new Mongodb.MongoClient(DB_CONN_STRING, {
+    serverApi: {
+      version: Mongodb.ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
+  });
   await client.connect();
-  const db: Mongodb.Db = client.db(DB_NAME);
+  const db: Mongodb.Db = client.db("admin");
 
   collections = DB_COLLECTIONS.reduce((_colls, collName: string) => {
     collections[collName] = db.collection(collName);
