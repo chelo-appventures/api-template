@@ -36,6 +36,7 @@ connectToDatabase()
   .then(() => {
     app.use("/auth", authenticationRouter);
     app.use("/api", verifyToken, restfulRouter);
+    //app.use("/api", restfulRouter);
     app.get("/", (_req: Request, res: Response) => {
       res.send({
         status: {
