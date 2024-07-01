@@ -4,7 +4,9 @@ const DB_CONN_STRING: string = process.env.DB_CONN_STRING || "xxxx";
 const DB_NAME: string = process.env.DB_NAME || "";
 const DB_COLLECTIONS: string[] = process.env.DB_COLLECTIONS?.split(",") || [];
 
-console.log(DB_CONN_STRING);
+console.log("DB", DB_CONN_STRING);
+console.log("Collections", DB_COLLECTIONS);
+
 export let collections: Record<string, Mongodb.Collection> = {};
 export const connectToDatabase = async () => {
   const client: Mongodb.MongoClient = new Mongodb.MongoClient(DB_CONN_STRING, {
